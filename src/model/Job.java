@@ -3,6 +3,7 @@ package model;
 public class Job {
 	
 	private int JobID;
+	private String JobTitle;
 	private String JobDescription;
 	private String CompanyName;
 	private String Location;
@@ -14,8 +15,9 @@ public class Job {
 		
 	}
 
-	public Job(String jobDescription, String companyName, String location, String keySkill, int salary) {
+	public Job(String jobTitle, String jobDescription, String companyName, String location, String keySkill, int salary) {
 		super();
+		this.JobTitle = jobTitle;
 		this.JobDescription = jobDescription;
 		this.CompanyName = companyName;
 		this.Location = location;
@@ -31,6 +33,14 @@ public class Job {
 		this.JobID = jobID;
 	}
 
+	public String getJobTitle() {
+		return JobTitle;
+	}
+
+	public void setJobTitle(String jobTitle) {
+		this.JobTitle = jobTitle;
+	}
+	
 	public String getJobDescription() {
 		return JobDescription;
 	}
@@ -81,10 +91,11 @@ public class Job {
 
 	@Override
 	public String toString() {
-		return "Job [JobID=" + JobID + ", JobDescription=" + JobDescription + ", CompanyName=" + CompanyName
-				+ ", Location=" + Location + ", KeySkill=" + KeySkill + ", Salary=" + Salary + ", Active=" + Active
-				+ "]";
+		return "Job [JobID=" + JobID + ", JobTitle=" + JobTitle + ", JobDescription=" + JobDescription
+				+ ", CompanyName=" + CompanyName + ", Location=" + Location + ", KeySkill=" + KeySkill + ", Salary="
+				+ Salary + ", Active=" + Active + "]";
 	}
+
 	
 	
 }
