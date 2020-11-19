@@ -20,8 +20,13 @@ public class EmpSkillDaoImpl implements IEmpSkillDao{
 			if(rst!=null) {
 				EmpSkill empskill=new EmpSkill();
 				while(rst.next()) {
-					
+					empskill.setESId(rst.getInt(1));
+					empskill.setEmployeeID(rst.getInt(2));
+					empskill.setSkillID(rst.getInt(3));
+					empskill.setExpYear(rst.getInt(4));
+					System.out.println(empskill);
 				}
+			}
 		}
 		catch (SQLException ex) {
 			System.out.println(ex.getMessage());
@@ -30,7 +35,13 @@ public class EmpSkillDaoImpl implements IEmpSkillDao{
 	}
 	@Override
 	public void addEmpSkill(EmpSkill empskill) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement pst=conn.prepareStatement("insert into EmpSkill (?)");
+			pst.setInt(1, empskill.getExpYear());
+		}
+		catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
 		
 	}
 	@Override

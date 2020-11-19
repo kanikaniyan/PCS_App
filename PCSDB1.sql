@@ -11,7 +11,10 @@ CREATE TABLE Employee (
 	Role varchar(15),
 	Active char(3) constraint chk_act1 check(Active in ('Yes', 'No')) not null
 );
+
 alter table employee auto_increment=101;
+alter table  `Employee` add column `Role` varchar(3) not null after `Gender`;
+alter table  `Employee` add column Gender varchar(6) constraint chk_gd check(Gender in ('Male','Female')) not null after password;
 
 CREATE TABLE Skill (
 	SkillID int auto_increment, constraint skillid_pk2 primary key (SkillID),

@@ -1,10 +1,19 @@
 package controller;
 
 import java.io.*;
+
+import dao.IEmployeeDao;
+import daoImpl.EmployeeDaoImpl;
 import model.Employee;
+import java.sql.*;
+import java.util.List;
 
 public class EmployeeController {
 	
+	IEmployeeDao empDao =null;
+	public EmployeeController() throws ClassNotFoundException, SQLException {
+		empDao=new EmployeeDaoImpl();
+	}
 	public Employee addEmployee() {
 		Employee emp=new Employee();
 		try {
@@ -17,15 +26,30 @@ public class EmployeeController {
 		emp.setUserID(reader.readLine());
 		System.out.println("Enter Password: ");
 		emp.setPassword(reader.readLine());
-		System.out.println("Enter Role: ");
-		emp.setRole(reader.readLine());
 		System.out.println("Enter Gender: ");
 		emp.setGender(reader.readLine());
+		System.out.println("Enter Role: ");
+		String role=(reader.readLine());
+		emp.setRole(role);
+		if (role.equals("HRA")) {
+			emp.setActive("yes");
+		}
+		else {
+			emp.setActive("No");
+		}
+		empDao.addEmployee(emp);
 		
 		}
 		catch(IOException ex) {
 			System.out.println(ex.getMessage());
 		}
 		return emp;
+	}
+	
+	public void getAllEmployees() {
+		List<Employee> allEmpList=empDao.getAllEmployees();
+		for(Employee emp:allEmpList) {
+			System.out.println(emp);
+		}
 	}
 }
