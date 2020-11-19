@@ -14,15 +14,13 @@ public class Job {
 		
 	}
 
-	public Job(int jobID, String jobDescription, String companyName, String location, String keySkill, int salary,
-			String active) {
-		this.JobID = jobID;
+	public Job(String jobDescription, String companyName, String location, String keySkill, int salary) {
+		super();
 		this.JobDescription = jobDescription;
 		this.CompanyName = companyName;
 		this.Location = location;
 		this.KeySkill = keySkill;
 		this.Salary = salary;
-		this.Active = active;
 	}
 
 	public int getJobID() {

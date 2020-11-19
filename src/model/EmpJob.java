@@ -10,10 +10,8 @@ public class EmpJob {
 		
 	}
 
-	public EmpJob(int eJID, int employeeID, int jobID, String recruited) {
-		this.EJID = eJID;
-		this.EmployeeID = employeeID;
-		this.JobID = jobID;
+	public EmpJob(String recruited) {
+		super();
 		this.Recruited = recruited;
 	}
 

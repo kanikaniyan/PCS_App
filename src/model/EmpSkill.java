@@ -10,10 +10,8 @@ public class EmpSkill {
 		
 	}
 
-	public EmpSkill(int eSId, int employeeID, int skillID, int expYear) {
-		this.ESId = eSId;
-		this.EmployeeID = employeeID;
-		this.SkillID = skillID;
+	public EmpSkill(int expYear) {
+		super();
 		this.ExpYear = expYear;
 	}
 

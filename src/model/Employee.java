@@ -5,18 +5,19 @@ public class Employee {
 	private int EmployeeID;
 	private String FirstName;
 	private String LastName;
-	private int UserID;
+	private String UserID;
 	private String Password;
 	private String Gender;
 	private String Role;
 	private String Active;
 	
+	//default constructor method
 	public Employee() {
 		
 	}
 
-	public Employee(String firstName, String lastName, int userID, String password, String gender,
-			String role, String active) {
+	public Employee(String firstName, String lastName, String userID, String password, String gender,
+			String role) {
 		super();
 		this.FirstName = firstName;
 		this.LastName = lastName;
@@ -24,7 +25,6 @@ public class Employee {
 		this.Password = password;
 		this.Gender = gender;
 		this.Role = role;
-		this.Active = active;
 	}
 
 	public int getEmployeeID() {
@@ -51,11 +51,11 @@ public class Employee {
 		this.LastName = lastName;
 	}
 
-	public int getUserID() {
+	public String getUserID() {
 		return UserID;
 	}
 
-	public void setUserID(int userID) {
+	public void setUserID(String userID) {
 		this.UserID = userID;
 	}
 

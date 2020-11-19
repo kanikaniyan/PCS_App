@@ -11,11 +11,10 @@ public class Skill {
 		
 	}
 
-	public Skill(int skillID, String skillName, String skillDescription, String active) {
-		this.SkillID = skillID;
+	public Skill(String skillName, String skillDescription) {
+		super();
 		this.SkillName = skillName;
 		this.SkillDescription = skillDescription;
-		this.Active = active;
 	}
 
 	public int getSkillID() {
