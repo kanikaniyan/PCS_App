@@ -15,10 +15,9 @@ public class Employee {
 		
 	}
 
-	public Employee(int employeeID, String firstName, String lastName, int userID, String password, String gender,
+	public Employee(String firstName, String lastName, int userID, String password, String gender,
 			String role, String active) {
-		
-		this.EmployeeID = employeeID;
+		super();
 		this.FirstName = firstName;
 		this.LastName = lastName;
 		this.UserID = userID;
