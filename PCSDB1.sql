@@ -11,7 +11,7 @@ CREATE TABLE Employee (
 	Role varchar(15),
 	Active char(3) constraint chk_act1 check(Active in ('Yes', 'No')) not null
 );
-
+select * from Employee;
 alter table employee auto_increment=101;
 alter table  `Employee` add column `Role` varchar(3) not null after `Gender`;
 alter table  `Employee` add column Gender varchar(6) constraint chk_gd check(Gender in ('Male','Female')) not null after password;
@@ -22,18 +22,23 @@ CREATE TABLE Skill (
 	SkillDescription varchar(250) not null,
 	Active char(3) constraint chk_act2 check(Active in ('Yes', 'No')) not null
 );
-alter table employee auto_increment=201;
+alter table Skill auto_increment=201;
+select * from skill;
+delete from skill where SkillName="java";
 
 CREATE TABLE Job (
 	JobID int auto_increment, constraint jobid_pk3 primary key (JobID),
-	JobDescription varchar(250) not null,
+	JobTitle varchar(20) not null,
+    JobDescription varchar(250) not null,
 	CompanyName varchar(20) not null,
-	Location geometry not null,
+	Location varchar(20) not null,
 	KeySkill varchar(20) not null,
-	Salary int constraint chk_sal check(Salary >= 15000) not null,
-	Active char(3) constraint chk_act3 check(Active in ('Yes', 'No')) not null 
+	Salary numeric(6,0) not null,
+	Active varchar(4) constraint chk_act3 check(Active in ('Yes', 'No')) not null 
 );
-alter table job auto_increment=301;
+alter table Job auto_increment=301;
+select * from job;
+alter table job modify column Salary int  not null after keyskill;
 
 CREATE TABLE EmpSkill (
 	ESId int auto_increment, constraint esid_pk4 primary key(ESId),

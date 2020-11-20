@@ -5,7 +5,6 @@ import java.sql.*;
 import config.JDBCConnection;
 import dao.IEmpSkillDao;
 import model.EmpSkill;
-import model.Employee;
 
 public class EmpSkillDaoImpl implements IEmpSkillDao{
 	Connection conn=null;

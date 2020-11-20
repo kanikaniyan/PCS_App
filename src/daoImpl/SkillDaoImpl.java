@@ -1,6 +1,8 @@
 package daoImpl;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import config.JDBCConnection;
 import dao.ISkillDao;
@@ -12,13 +14,15 @@ public class SkillDaoImpl implements ISkillDao{
 		conn = JDBCConnection.getDBConnection();
 	}
 	@Override
-	public void getAllSkills() {
+	public List<Skill> getAllSkills() {
+		List<Skill> allSkillList=new ArrayList<Skill>();
 		try {
 			Statement stmt=conn.createStatement();
 			ResultSet rst=stmt.executeQuery("select * from skill");
 			if(rst!=null) {
-				Skill skill= new Skill();
+				Skill skill= null;
 				while(rst.next()) {
+					skill= new Skill();
 					skill.setSkillID(rst.getInt(1));
 					skill.setSkillName(rst.getString(2));
 					skill.setSkillDescription(rst.getString(3));
@@ -30,13 +34,13 @@ public class SkillDaoImpl implements ISkillDao{
 		catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}
-		
+		return allSkillList;
 		
 	}
 	@Override
 	public void addSkill(Skill skill) {
 		try {
-			PreparedStatement pst=conn.prepareStatement("insert into Skill values(?,?,?)");
+			PreparedStatement pst=conn.prepareStatement("insert into Skill(SkillName, SkillDescription, Active) values(?,?,?)");
 			pst.setString(1, skill.getSkillName());
 			pst.setString(2, skill.getSkillDescription());
 			pst.setString(3, skill.getActive());

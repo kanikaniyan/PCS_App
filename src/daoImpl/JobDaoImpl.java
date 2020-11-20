@@ -1,5 +1,7 @@
 package daoImpl;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import config.JDBCConnection;
 import dao.IJobDao;
@@ -11,13 +13,15 @@ public class JobDaoImpl implements IJobDao{
 		conn=JDBCConnection.getDBConnection();
 	}
 	@Override
-	public void getAllJobs() {
+	public List<Job> getAllJobs() {
+		List<Job> allJobList=new ArrayList<Job>();
 		try {
 			Statement stmt=conn.createStatement();
 			ResultSet rst=stmt.executeQuery("select * from Job");
 			if(rst!=null) {
-				Job job=new Job();
+				Job job=null;
 				while(rst.next()) {
+					job=new Job();
 					job.setJobID(rst.getInt(1));
 					job.setJobTitle(rst.getString(2));
 					job.setJobDescription(rst.getString(3));
@@ -33,12 +37,12 @@ public class JobDaoImpl implements IJobDao{
 		catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}
-		
+		return allJobList;
 	}
 	@Override
 	public void addJob(Job job) {
 		try {
-			PreparedStatement pst=conn.prepareStatement("insert into job values(?,?,?,?,?,?,?)");
+			PreparedStatement pst=conn.prepareStatement("insert into Job(JobTitle, JobDescription, CompanyName, Location, KeySkill, Salary, Active) values(?,?,?,?,?,?,?)");
 			pst.setString(1, job.getJobTitle());
 			pst.setString(2, job.getJobDescription());
 			pst.setString(3, job.getCompanyName());
