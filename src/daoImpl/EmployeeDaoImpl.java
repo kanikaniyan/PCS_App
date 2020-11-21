@@ -70,28 +70,78 @@ public class EmployeeDaoImpl implements IEmployeeDao{
 
 	@Override
 	public Employee getEmployeeById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Employee emp=new Employee();
+		try{
+			PreparedStatement pst=conn.prepareStatement("select * from Employee where EmployeeID=?");
+			pst.setInt(1, id);
+			ResultSet rst=pst.executeQuery();
+			if(rst!=null) {
+				if(rst.next()) {
+					emp.setEmployeeID(rst.getInt(1));
+					emp.setFirstName(rst.getString(2));
+					emp.setLastName(rst.getString(3));
+					emp.setUserID(rst.getString(4));
+					emp.setPassword(rst.getString(5));
+					emp.setRole(rst.getString(6));
+					emp.setGender(rst.getString(7));
+					emp.setActive(rst.getString(8));
+				}
+			}
+		}
+		catch(SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+		return emp;
 	}
 
 	@Override
 	public void updateEmployee(Employee emp) {
-		// TODO Auto-generated method stub
+		
+		
+		try {
+			//creating PreparedStatement object by passing query string
+			PreparedStatement pst=conn.prepareStatement("update Employee set Password = ? where EmployeeID=?");
+			pst.setString(1, emp.getPassword());
+			pst.setInt(2, emp.getEmployeeID());
+			int i=pst.executeUpdate();
+			if(i==1){
+				System.out.println("1 record updated...");
+			}
+			else {
+				System.out.println("updation failed...");
+			}
+		}
+		catch(SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
 		
 	}
 
 	@Override
-	public void deactivateEmployee(int id) {
-		// TODO Auto-generated method stub
+	public void deactivateEmployee(Employee emp) {
 		
+		try {
+			PreparedStatement pst=conn.prepareStatement("update Employee set Active=? where EmployeeID=?");
+			pst.setString(1, emp.getActive());
+			pst.setInt(2, emp.getEmployeeID());
+			int i=pst.executeUpdate();
+			if(i==1) {
+				System.out.println("1 record updated...");
+			}
+			else {
+				System.out.println("updation failed...");
+			}
+		}
+		catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
-
+ 
 	@Override
 	public void deleteEmployee(int id) {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 }
 
