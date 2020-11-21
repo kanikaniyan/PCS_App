@@ -139,7 +139,20 @@ public class EmployeeDaoImpl implements IEmployeeDao{
  
 	@Override
 	public void deleteEmployee(int id) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement pst=conn.prepareStatement("delete from Employee where EmployeeID=?");
+			pst.setInt(1, id);
+			int i =pst.executeUpdate();
+			if(i==1) {
+				System.out.println("1 record deleted...");
+			}
+			else {
+				System.out.println("deletion failed...");
+			}
+		}
+		catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
 		
 	}
 	

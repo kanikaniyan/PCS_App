@@ -120,7 +120,7 @@ public class EmployeeController {
 		try {
 			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
 			int id;
-			String ask, cont;
+			String ask;
 			System.out.println("Enter EmployeeId which you want to deactivate: ");
 			id=Integer.parseInt(reader.readLine());
 			Employee emp=empDao.getEmployeeById(id);
@@ -148,6 +148,16 @@ public class EmployeeController {
 	}
 	
 	public void deleteEmployee() {
-		
+		try {
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			int id;
+			System.out.println("Enter the employee ID you want to delete: ");
+			id=Integer.parseInt(reader.readLine());
+			empDao.deleteEmployee(id);
+			
+		}
+		catch (IOException ex) {
+			System.out.println("ex.getMessage()");
+		}
 	}
 }

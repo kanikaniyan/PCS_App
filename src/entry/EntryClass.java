@@ -55,7 +55,7 @@ public class EntryClass {
 				empController.deactivateEmployee();
 				break;
 			case 6:
-	
+				empController.deleteEmployee();
 				break;
 			case 7:
 	
