@@ -8,6 +8,7 @@ public class Employee {
 	private String UserID;
 	private String Password;
 	private String Gender;
+	private long PhoneNumber;
 	private String Role;
 	private String Active;
 	
@@ -16,7 +17,20 @@ public class Employee {
 		
 	}
 
-	public Employee(String firstName, String lastName, String userID, String password, String gender,
+	public Employee(int employeeID, String firstName, String lastName, String userID, String password, String gender, long phoneNumber,
+			String role, String Active) {
+		this.EmployeeID= employeeID;
+		this.FirstName = firstName;
+		this.LastName = lastName;
+		this.UserID = userID;
+		this.Password = password;
+		this.Gender = gender;
+		this.PhoneNumber=phoneNumber;
+		this.Role = role;
+		this.Active = Active;
+	}
+	
+	public Employee(String firstName, String lastName, String userID, String password, String gender, long phoneNumber,
 			String role) {
 		super();
 		this.FirstName = firstName;
@@ -24,6 +38,7 @@ public class Employee {
 		this.UserID = userID;
 		this.Password = password;
 		this.Gender = gender;
+		this.PhoneNumber=phoneNumber;
 		this.Role = role;
 	}
 
@@ -75,6 +90,14 @@ public class Employee {
 		this.Gender = gender;
 	}
 
+	public long getPhoneNumber() {
+		return PhoneNumber;
+	}
+
+	public void setPhoneNumber(long phoneNumber) {
+		this.PhoneNumber = phoneNumber;
+	}	
+	
 	public String getRole() {
 		return Role;
 	}
@@ -94,9 +117,11 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [EmployeeID=" + EmployeeID + ", FirstName=" + FirstName + ", LastName=" + LastName
-				+ ", UserID=" + UserID + ", Password=" + Password + ", Gender=" + Gender + ", Role=" + Role
-				+ ", Active=" + Active + "]";
-	}		
+				+ ", UserID=" + UserID + ", Password=" + Password + ", Gender=" + Gender + ", PhoneNumber="
+				+ PhoneNumber + ", Role=" + Role + ", Active=" + Active + "]";
+	}
+
+		
 	
 }
 

@@ -8,7 +8,6 @@ public interface ISkillDao {
 	List<Skill> getAllSkills();
 	void addSkill(Skill skill);
 	Skill getSkillById(int id);
-	void updateSkill(Skill skill);
-	void deactivateSkill(int id);
+	void deactivateSkill(Skill skill, String act);
 	void deleteSkill(int id);
 }

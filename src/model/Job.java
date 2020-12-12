@@ -15,6 +15,17 @@ public class Job {
 		
 	}
 
+	public Job(int jobId, String jobTitle, String jobDescription, String companyName, String location, String keySkill, int salary, String active) {
+		this.JobID=jobId;
+		this.JobTitle = jobTitle;
+		this.JobDescription = jobDescription;
+		this.CompanyName = companyName;
+		this.Location = location;
+		this.KeySkill = keySkill;
+		this.Salary = salary;
+		this.Active = active;
+	}
+	
 	public Job(String jobTitle, String jobDescription, String companyName, String location, String keySkill, int salary) {
 		super();
 		this.JobTitle = jobTitle;

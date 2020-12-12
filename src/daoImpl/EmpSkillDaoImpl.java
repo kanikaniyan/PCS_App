@@ -2,6 +2,9 @@ package daoImpl;
 
 import java.sql.*;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import config.JDBCConnection;
 import dao.IEmpSkillDao;
 import model.EmpSkill;
@@ -10,57 +13,34 @@ public class EmpSkillDaoImpl implements IEmpSkillDao{
 	Connection conn=null;
 	public EmpSkillDaoImpl() throws ClassNotFoundException, SQLException {
 		conn=JDBCConnection.getDBConnection();
+		conn.setAutoCommit(false);
 	}
+	
+	JFrame jpane=new JFrame();
 	@Override
-	public void getAllEmpSkill() {
+	public void empSkill(EmpSkill empskill) {
 		try {
-			Statement stmt=conn.createStatement();
-			ResultSet rst=stmt.executeQuery("select * from EmpSkill");
-			if(rst!=null) {
-				EmpSkill empskill=new EmpSkill();
-				while(rst.next()) {
-					empskill.setESId(rst.getInt(1));
-					empskill.setEmployeeID(rst.getInt(2));
-					empskill.setSkillID(rst.getInt(3));
-					empskill.setExpYear(rst.getInt(4));
-					System.out.println(empskill);
-				}
+			PreparedStatement pst=conn.prepareStatement("insert into empskill (employeeid, skillid, expyear) values(?,?,?)");
+			pst.setInt(1, empskill.getEmployeeID());
+			pst.setInt(2, empskill.getSkillID());
+			pst.setInt(3, empskill.getExpYear());
+			int i=pst.executeUpdate();
+			conn.commit();
+			if(i==1) {
+				JOptionPane.showMessageDialog(jpane,"Record updated Successfully!!", "Alert!!", JOptionPane.WARNING_MESSAGE);
+			}
+			else {
+				JOptionPane.showMessageDialog(jpane, "Updation Failed.. May be invalid ID..", "Alert!!", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 		catch (SQLException ex) {
-			System.out.println(ex.getMessage());
+			try {
+				conn.rollback();
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		
-	}
-	@Override
-	public void addEmpSkill(EmpSkill empskill) {
-		try {
-			PreparedStatement pst=conn.prepareStatement("insert into EmpSkill (?)");
-			pst.setInt(1, empskill.getExpYear());
-		}
-		catch (SQLException ex) {
-			System.out.println(ex.getMessage());
-		}
-		
-	}
-	@Override
-	public EmpSkill getEmpSkillById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void updateEmpSkill(EmpSkill empskill) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void deactivateEmpSkill(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void deleteEmpSkill(int id) {
-		// TODO Auto-generated method stub
 		
 	}
 	
