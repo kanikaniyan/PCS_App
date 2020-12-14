@@ -17,7 +17,7 @@ show variables like "max_connections";
 alter table employee auto_increment=101;
 alter table employee modify column UserID varchar(50) not null;
 alter table Employee modify column PhoneNumber long not null;
-alter table  `Employee` add column Gender varchar(6) check(Gender in ('Male','Female')) not null after password;
+alter table  `Employee` add column Gender varchar(6) not null check(Gender in ('Male','Female'));
 update employee set Active="YES" where employeeid=106;
 
 CREATE TABLE Skill (
@@ -49,7 +49,7 @@ CREATE TABLE EmpSkill (
 	ESId int auto_increment, constraint esid_pk4 primary key(ESId),
 	EmployeeID int, constraint empid_eskill foreign key(EmployeeID) references Employee(EmployeeID),
 	SkillID int, constraint skillid_eskill foreign key(SkillID) references Skill(SkillID),
-	ExpYear int constraint chk_expyear check(ExpYear>1) not null
+	ExpYear int not null, constraint chk_expyear check(ExpYear>1) 
 );
 alter table EmpSkill auto_increment=401;
 select * from EmpSkill;
@@ -77,4 +77,8 @@ inner join employee e on a.employeeid=e.employeeid;
 
 select * from appliedlist;
 --------------------------------------------------------------------
+
+
+
+
 
