@@ -43,7 +43,7 @@ public class TestClass {
 		Job jobActual=new Job();
 		Job jobExpected=new Job(314, "Java Developer", "Need a developer with an experience of 1 year", " Professionet Consultancy Services", "Chennai", "core & Advanced Java", 21000, "Yes");
 		jobActual=jobDao.getJobById(314);
-		assertEquals(jobExpected.getJobTitle(), jobActual.getJobTitle());
+		assertEquals(jobExpected.getJobTitle(), jobActual.getJobTitle());  
 	}
 	
 	@Test
